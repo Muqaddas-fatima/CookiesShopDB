@@ -1,0 +1,34 @@
+--ALTERING ORDERS TABLE TO THE FOREIGN KEYS EMP ID AND CUST ID ALONG WITH DELETE CASCADE
+--ON DELETE CASCADE constraint is used in MySQL to delete the rows from the child table automatically, when the rows from the parent table are deleted.
+
+
+USE CookieShop;
+
+ALTER TABLE Orders
+ADD Emp_ID INT;
+
+ALTER TABLE Orders
+ADD Cust_ID INT;
+
+ALTER TABLE Orders
+--DROP CONSTRAINT FK_Emp_ID;
+ADD CONSTRAINT FK_Emp_ID FOREIGN KEY (Emp_ID) REFERENCES Employee(Emp_ID) ON DELETE CASCADE;
+
+ALTER TABLE Orders
+--DROP CONSTRAINT FK_Cust_ID;
+ADD CONSTRAINT FK_Cust_ID FOREIGN KEY (Cust_ID) REFERENCES Customers(Cust_ID) ON DELETE CASCADE;
+
+
+
+SELECT * FROM Orders;
+SELECT * FROM Customers;
+
+
+
+
+
+ALTER TABLE Ingr_details
+ADD CONSTRAINT FK_Cookie_ID FOREIGN KEY (Cookie_ID) REFERENCES Cookies(Cookie_ID) ON DELETE CASCADE;
+
+ALTER TABLE Order_details
+ADD CONSTRAINT FK_Order_ID FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID) ON DELETE CASCADE;
